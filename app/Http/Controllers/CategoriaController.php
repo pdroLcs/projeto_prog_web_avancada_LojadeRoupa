@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoriaRequest;
+use App\Models\Categoria;
 
 class CategoriaController extends Controller
 {
@@ -65,8 +66,7 @@ class CategoriaController extends Controller
      */
     public function destroy(string $id)
     {
-        $categoria = Categoria::findOrFail($id);
-        $categoria->destroy();
+        Categoria::destroy($id);
         return redirect()->route('categorias.index')->with('success', 'Categoria excluída com sucesso!');
     }
 }

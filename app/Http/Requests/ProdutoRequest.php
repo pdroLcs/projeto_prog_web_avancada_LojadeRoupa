@@ -23,9 +23,10 @@ class ProdutoRequest extends FormRequest
     {
         return [
             'nome' => 'required|string|max:100',
-            'tamanho' => 'required|string|max:3',
-            'cor' => 'required|string|max:100',
             'preco' => 'required|numeric',
+            'descricao' => 'string|max:200',
+            'material' => 'string|max:100',
+            'marca' => 'string|max:100',
             'categoria_id' => 'required|exists:categorias,id'
         ];
     }
@@ -34,8 +35,6 @@ class ProdutoRequest extends FormRequest
     {
         return [
             'nome.required' => 'O nome é obrigatório',
-            'tamanho.required' => 'O tamanho é obrigatório',
-            'cor.required' => 'A cor é obrigatória',
             'preco.required' => 'O preço é obrigatório'
         ];
     }

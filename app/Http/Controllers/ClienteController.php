@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ClienteRequest;
-use Illuminate\Http\Request;
+use App\Models\Cliente;
 
 class ClienteController extends Controller
 {
@@ -66,8 +66,7 @@ class ClienteController extends Controller
      */
     public function destroy(string $id)
     {
-        $cliente = Cliente::findOrFail($id);
-        $cliente->destroy();
+        Cliente::destroy($id);
         return redirect()->route('clientes.index')->with('sucess', 'Cliente excluído com sucesso');
     }
 }

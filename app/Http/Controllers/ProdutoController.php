@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProdutoRequest;
-use Illuminate\Http\Request;
+use App\Models\Categoria;
+use App\Models\Produto;
 
 class ProdutoController extends Controller
 {
@@ -68,8 +69,7 @@ class ProdutoController extends Controller
      */
     public function destroy(string $id)
     {
-        $produto = Produto::findOrFail($id);
-        $produto->destroy();
+        Produto::destroy($id);
         return redirect()->route('produtos.index')->with('success', 'produto excluída com sucesso');
     }
 }

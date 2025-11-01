@@ -23,7 +23,8 @@ class ClienteRequest extends FormRequest
     {
         return [
             'nome' => 'required|string|max:100',
-            'email' => 'required|email|max:100'
+            'email' => 'required|email|max:100',
+            'telefone' => 'string|min:10|max:15'
         ];
     }
 
