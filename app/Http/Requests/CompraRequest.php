@@ -11,7 +11,7 @@ class CompraRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,18 @@ class CompraRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'valor_total' => 'required|numeric',
+            'status' => 'required|string|max:100',
+            'cliente_id' => 'required|exists:clientes,id'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'valor_total.required' => 'O valor total da compra é obrigatório!',
+            'status.required' => 'O status da compra é obrigatório!',
+            'cliente_id.required' => 'O cliente deve ser obrigatório!'
         ];
     }
 }

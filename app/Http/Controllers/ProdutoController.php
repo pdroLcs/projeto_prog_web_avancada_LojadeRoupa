@@ -40,7 +40,7 @@ class ProdutoController extends Controller
      */
     public function show(string $id)
     {
-        $produto = Produto::findOrFail($id);
+        $produto = Produto::with('categoria')->findOrFail($id);
         return view('produtos.show', compact('produto'));
     }
 
@@ -49,9 +49,9 @@ class ProdutoController extends Controller
      */
     public function edit(string $id)
     {
-        $produto = Produto::findOrFail($id);
+        $produto = Produto::with('categoria')->findOrFail($id);
         $categorias = Categoria::all();
-        return view('produtos.edit', compact('produto', 'cateogiras'));
+        return view('produtos.edit', compact('produto', 'categorias'));
     }
 
     /**
@@ -59,7 +59,7 @@ class ProdutoController extends Controller
      */
     public function update(produtoRequest $request, string $id)
     {
-        $produto = Produto::findOrFail($id);
+        $produto = Produto::with('categoria')->findOrFail($id);
         $produto->update($request->validated());
         return redirect()->route('produtos.index')->with('success', 'produto atualizada com sucesso!');
     }
