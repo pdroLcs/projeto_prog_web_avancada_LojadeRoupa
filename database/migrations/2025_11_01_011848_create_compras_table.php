@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('compras', function (Blueprint $table) {
             $table->id();
-            $table->foreginID('cliente_id');
+            $table->foreignId('cliente_id')->constrained()->onDelete('cascade');
             $table->decimal('valor_total', 10, 2);
             $table->string('status');
             $table->timestamps();
