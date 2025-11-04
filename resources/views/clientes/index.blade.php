@@ -31,8 +31,8 @@
                                 @foreach ($clientes as $cliente)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $cliente->id }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">{{ $cliente->nome }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">{{ $cliente->email }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ $cliente->user->name }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ $cliente->user->email }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $cliente->telefone }}</td>                                </tr>
                                 @endforeach
                             </tbody>

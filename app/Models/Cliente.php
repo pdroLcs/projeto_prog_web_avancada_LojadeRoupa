@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Cliente extends Model
 {
-
     protected $fillable = ['telefone', 'user_id'];
 
     public function user()
@@ -15,4 +14,8 @@ class Cliente extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function compras(): HasMany
+    {
+        return $this->hasMany(Compra::class, 'user_id'); 
+    }
 }
