@@ -4,20 +4,24 @@
             {{ __('Gerenciamento de Categorias') }}
         </h2>
     </x-slot>
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
-                    {{-- Botão Adicionar Categoria --}}
-                    <div class="flex justify-end mb-4">
-                        <a href="{{ route('categorias.create') }}" class="bg-purple-600 hover:bg-purple-700 text-black font-bold py-2 px-4 rounded">
-                            Adicionar Nova Categoria
-                        </a>
-                    </div>
+                    <div class="flex justify-between items-center mb-6">
+                        
+                        {{-- Tabela de Categorias Cadastradas --}}
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Lista de Categorias Cadastradas</h3>
 
-                    {{-- Tabela de Categorias Cadastradas --}}
-                    <h3 class="text-lg font-medium text-gray-900 mb-4">Lista de Clientes</h3>
+                        {{-- Botão Adicionar Categoria --}}
+                        <div class="p-4 mb-4">
+                            <a href="{{ route('categorias.create') }}" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
+                                Adicionar Nova Categoria
+                            </a>
+                        </div>
+                    </div>
                     
                     <!-- Verificação para ver se já tem alguma categoria cadastrada -->
                     @if ($categorias->isEmpty())
@@ -28,7 +32,6 @@
                                 <tr>
                                     <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
                                     <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
-                                    <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">E-mail</th>
                                     <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
                                 </tr>
                             </thead>
@@ -36,9 +39,8 @@
                             <tbody class="bg-white divide-y divide-gray-200">
                                 @foreach ($categorias as $categoria)
                                 <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">{{ $cliente->id }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">{{ $cliente->nome }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">{{ $cliente->email }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ $categoria->id }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ $categoria->nome }}</td>
                                 </tr>
                                 @endforeach
                             </tbody>

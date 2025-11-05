@@ -10,15 +10,19 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     
-                    {{-- Botão Adicionar Produto (Requisito Estrutural) --}}
-                    <div class="flex justify-end mb-4">
-                        <a href="{{ route('produtos.create') }}" class="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded">
-                            Adicionar Novo Produto
-                        </a>
+                    <div class="flex justify-between items-center mb-6">
+
+                        {{-- Tabela de Produtos (Requisito Estrutural: Lista de Produtos/Serviços) --}}
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Lista de Produtos Existentes</h3>
+
+                        {{-- Botão Adicionar Produto (Requisito Estrutural) --}}
+                        <div class="p-4 mb-4">
+                            <a href="{{ route('produtos.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded border-2 border-blue-700 hover:border-blue-900">
+                                Adicionar Novo Produto
+                            </a>
+                        </div>
+
                     </div>
-                    
-                    {{-- Tabela de Produtos (Requisito Estrutural: Lista de Produtos/Serviços) --}}
-                    <h3 class="text-lg font-medium text-gray-900 mb-4">Lista de Produtos Existentes</h3>
                     
                     @if ($produtos->isEmpty())
                         <p>Nenhum produto encontrado. Adicione um para começar!</p>

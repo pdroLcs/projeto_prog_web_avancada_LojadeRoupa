@@ -9,9 +9,12 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
-                    {{-- Tabela de Clientes --}}
-                    <h3 class="text-lg font-medium text-gray-900 mb-4">Lista de Clientes</h3>
-                    
+                    <div class="flex justify-between items-center mb-6">
+
+                        {{-- Tabela de Categorias Cadastradas --}}
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Lista de Clientes Cadastrados</h3>
+
+                    </div>
                     <!-- Verificação para ver se já tem algum usuário cadastrado -->
                     @if ($clientes->isEmpty())
                         <p>Nenhum cliente encontrado. Adicione um para começar!</p>

@@ -10,9 +10,12 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     
-                    {{-- Esta View geralmente não tem 'adicionar', mas sim 'visualizar' --}}
-                    
-                    <h3 class="text-lg font-medium text-gray-900 mb-4">Lista de Compras Realizadas</h3>
+                    <div class="flex justify-between items-center mb-6">
+
+                        {{-- Tabela de Compras Realizada --}}
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Lista de Compras Realizadas</h3>
+
+                    </div>
                     
                     @if ($compras->isEmpty())
                         <p>Nenhuma compra registrada até o momento.</p>
