@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Cliente extends Model
 {
+    use HasFactory;
+
     protected $fillable = ['telefone', 'user_id'];
 
     public function user()
@@ -17,6 +19,6 @@ class Cliente extends Model
 
     public function compras(): HasMany
     {
-        return $this->hasMany(Compra::class, 'user_id'); 
+        return $this->hasMany(Compra::class); 
     }
 }

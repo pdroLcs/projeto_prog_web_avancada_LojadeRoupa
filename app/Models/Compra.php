@@ -15,11 +15,11 @@ class Compra extends Model
 
     public function cliente(): BelongsTo
     {
-        return $this->belongsTo(Cliente::class, 'user_id');
+        return $this->belongsTo(Cliente::class);
     }
 
     public function itens(): HasMany
     {
-        return $this->hasMany(ItensCompra::class, 'pedido_id');
+        return $this->hasMany(ItensCompra::class);
     }
 }

@@ -2,24 +2,25 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Produto extends Model
 {
+    use HasFactory;
+
     protected $fillable = ['nome', 'preco', 'descricao', 'material', 'marca', 'categoria_id'];
 
     public function categoria(): BelongsTo
     {
-        // O Laravel assume que a chave estrangeira é 'categoria_id', mas é bom ser explícito.
-        return $this->belongsTo(Categoria::class, 'categoria_id');
+        return $this->belongsTo(Categoria::class);
     }
 
     public function itensCompra(): HasMany
     {
-        // Liga este produto aos registros na tabela 'itens_compra'
-        return $this->hasMany(ItensCompra::class, 'produto_id');
+        return $this->hasMany(ItensCompra::class);
     }
 
    public function ProdutoVariacoes(): HasMany
