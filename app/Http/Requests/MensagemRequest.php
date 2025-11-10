@@ -11,7 +11,7 @@ class MensagemRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,16 @@ class MensagemRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'assunto' => 'string|max:100',
+            'mensagem' => 'required|string|max:1000',
+            'cliente_id' => 'required|exists:cliente,id'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'mensagem.required' => 'Por favor, insira uma mensagem!'
         ];
     }
 }
