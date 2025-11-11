@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('tamanho');
             $table->string('cor');
+            $table->foreignId('produto_id')->constrained()->onDelete("cascade");
             $table->timestamps();
         });
     }

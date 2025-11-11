@@ -11,7 +11,7 @@ class ProdutoVariacoes extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['produto_id', 'tamanho', 'cor', 'quantidade_estoque', 'preco_adicional'];
+    protected $fillable = ['produto_id', 'tamanho', 'cor'];
 
     public function produto(): BelongsTo
     {
