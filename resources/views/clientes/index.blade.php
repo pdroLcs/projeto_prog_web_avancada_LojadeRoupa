@@ -1,48 +1,57 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Gerenciar Clientes') }}
-        </h2>
-    </x-slot>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
+@extends('layouts.app')
 
-                    <div class="flex justify-between items-center mb-6">
+@section('title', 'Gerenciar Clientes')
 
-                        {{-- Tabela de Categorias Cadastradas --}}
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">Lista de Clientes Cadastrados</h3>
+@section('content')
+<div class="container my-5">
+    <h2 class="text-center mb-4">Gerenciar Clientes</h2>
 
-                    </div>
-                    <!-- Verificação para ver se já tem algum usuário cadastrado -->
-                    @if ($clientes->isEmpty())
-                        <p>Nenhum cliente encontrado. Adicione um para começar!</p>
-                    @else
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead>
+    {{-- Verificação para ver se há clientes cadastrados --}}
+    @if ($clientes->isEmpty())
+        <div class="alert alert-warning text-center">
+            Nenhum cliente encontrado. Adicione um para começar!
+        </div>
+    @else
+        <div class="card shadow-sm border-0 rounded-3">
+            <div class="card-body">
+                <h3 class="mb-4 text-dark">Lista de Clientes Cadastrados</h3>
+
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>E-mail</th>
+                                <th>Telefone</th>
+                                <th class="text-center">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($clientes as $cliente)
                                 <tr>
-                                    <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                                    <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
-                                    <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">E-mail</th>
-                                    <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Telefone</th>
-                                    <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+                                    <td>{{ $cliente->id }}</td>
+                                    <td>{{ $cliente->user->name }}</td>
+                                    <td>{{ $cliente->user->email }}</td>
+                                    <td>{{ $cliente->telefone }}</td>
+                                    <td class="text-center">
+                                        <a href="{{ route('clientes.show', $cliente->id) }}" class="btn btn-sm btn-outline-primary">Ver</a>
+                                        <a href="{{ route('clientes.edit', $cliente->id) }}" class="btn btn-sm btn-outline-success">Editar</a>
+                                        <form action="{{ route('clientes.destroy', $cliente->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Tem certeza que deseja excluir este cliente?')">
+                                                Excluir
+                                            </button>
+                                        </form>
+                                    </td>
                                 </tr>
-                            </thead>
-
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                @foreach ($clientes as $cliente)
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">{{ $cliente->id }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">{{ $cliente->user->name }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">{{ $cliente->user->email }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">{{ $cliente->telefone }}</td>                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    @endif
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    </div>
-</x-app-layout>
+    @endif
+</div>
+@endsection
