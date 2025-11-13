@@ -37,7 +37,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="text-center text-muted">
+                                <td colspan="3" class="text-center text-muted">
                                     Nenhuma categoria encontrada. Adicione uma para começar!
                                 </td>
                             </tr>
