@@ -11,7 +11,7 @@
 
         <div class="card-body">
             {{-- Exibir mensagens de erro --}}
-            @if ($errors->any())
+            {{-- @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul class="mb-0">
                         @foreach ($errors->all() as $error)
@@ -19,12 +19,12 @@
                         @endforeach
                     </ul>
                 </div>
-            @endif
+            @endif --}}
 
             {{-- Formulário de criação --}}
             <form action="{{ route('categorias.store') }}" method="POST">
                 @csrf
-                <x-form.input label="Nome da Categoria" name="nome" placeholder="Roupas, Calçados" required/>
+                <x-form.input label="Nome da Categoria" name="nome" placeholder="Roupas, Calçados"/>
 
                 <x-form.actions :back="route('categorias.index')"/>
             </form>
