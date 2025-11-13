@@ -34,7 +34,7 @@
                             <tr>
                                 <td>{{ $produto->id }}</td>
                                 <td>{{ $produto->nome }}</td>
-                                <td>{{ $produto->preco }}</td>
+                                <td>R${{ number_format($produto->preco, 2, ',', '.') }}</td>
                                 <td class="text-center">
                                     <x-action-buttons :id="$produto->id" showRoute="produtos.show" editRoute="produtos.edit" deleteRoute="produtos.destroy"/>
                                 </td>
