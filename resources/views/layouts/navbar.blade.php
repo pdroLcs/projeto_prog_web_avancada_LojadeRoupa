@@ -22,6 +22,12 @@
 
     {{-- perfil fora do collapse — fica sempre visível e dropdown não é recortado --}}
     <ul class="navbar-nav ms-auto">
+      {{-- Botão do WhatsApp --}}
+      <li class="nav-item me-2">
+        <a href="https://wa.me/556798781333" target="_blank" class="nav-link d-flex align-items-center text-success fw-semibold">
+          <i class="bi bi-whatsapp me-1"></i> +55 67 99934-1014
+        </a>
+      </li>
       @auth
         <li class="nav-item dropdown">
           <a id="navbarDropdown" class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button"
