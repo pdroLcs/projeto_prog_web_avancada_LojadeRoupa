@@ -10,7 +10,6 @@
     {{-- collapse com os links à esquerda --}}
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto">
-        <x-nav-button-link href="{{ url('/') }}" :active="Request()->routeIs('/')">Início</x-nav-button-link>
         <x-nav-button-link href="{{ url('/produtos') }}" :active="Request()->routeIs('produtos.*')">Produtos</x-nav-button-link>
         <x-nav-button-link href="{{ url('/compras') }}" :active="Request()->routeIs('compras.*')">Compras</x-nav-button-link>
         @if (Auth::user()->isAdmin())
