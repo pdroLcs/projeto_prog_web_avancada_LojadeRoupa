@@ -6,12 +6,7 @@
 <div class="container my-5">
     <h2 class="text-center mb-4">Gerenciar Clientes</h2>
 
-    @if (session('success'))
-        <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
-        </div>
-    @endif
+    <x-alert/>
 
     <div class="card shadow-sm border-0 rounded-3">
         <div class="card-body">
