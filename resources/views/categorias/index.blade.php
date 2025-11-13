@@ -37,15 +37,7 @@
                                 <td>{{ $categoria->id }}</td>
                                 <td>{{ $categoria->nome }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('categorias.show', $categoria->id) }}" class="btn btn-sm btn-outline-primary">Ver</a>
-                                    <a href="{{ route('categorias.edit', $categoria->id) }}" class="btn btn-sm btn-outline-success">Editar</a>
-                                    <form action="{{ route('categorias.destroy', $categoria->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Tem certeza que deseja excluir esta categoria?')">
-                                            Excluir
-                                        </button>
-                                    </form>
+                                    <x-action-buttons :id="$categoria->id" showRoute="categorias.show" editRoute="categorias.edit" deleteRoute="categorias.destroy"/>
                                 </td>
                             </tr>
                         @empty

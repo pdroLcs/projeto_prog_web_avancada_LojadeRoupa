@@ -36,15 +36,7 @@
                                 <td>{{ $cliente->user->email }}</td>
                                 <td>{{ $cliente->telefone }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('clientes.show', $cliente->id) }}" class="btn btn-sm btn-outline-primary">Ver</a>
-                                    <a href="{{ route('profile.edit', $cliente->id) }}" class="btn btn-sm btn-outline-success">Editar</a>
-                                    <form action="{{ route('clientes.destroy', $cliente->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Tem certeza que deseja excluir este cliente?')">
-                                            Excluir
-                                        </button>
-                                    </form>
+                                    <x-action-buttons :id="$cliente->id" showRoute="clientes.show" editRoute="clientes.edit" deleteRoute="clientes.destroy"/>
                                 </td>
                             </tr>
                         @empty
