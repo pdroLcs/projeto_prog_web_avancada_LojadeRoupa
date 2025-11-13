@@ -26,14 +26,7 @@
                 @csrf
                 <x-form.input label="Nome da Categoria" name="nome" placeholder="Roupas, Calçados" required/>
 
-                <div class="d-flex justify-content-end">
-                    <a href="{{ route('categorias.index') }}" class="btn btn-secondary me-2">
-                        <i class="bi bi-arrow-left"></i> Voltar
-                    </a>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="bi bi-save"></i> Salvar
-                    </button>
-                </div>
+                <x-form.actions :back="route('categorias.index')"/>
             </form>
         </div>
     </div>
