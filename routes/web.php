@@ -27,7 +27,7 @@ require __DIR__.'/auth.php';
 Route::middleware(['auth', 'admin'])->group(function() {
     Route::resource('categorias', CategoriaController::class);
     Route::resource('produtos', ProdutoController::class)->except('index', 'show');
+    Route::resource('clientes', ClienteController::class)->only('index', 'show');
 });
 Route::resource('produtos', ProdutoController::class)->only('index', 'show');
-Route::resource('clientes', ClienteController::class);
 Route::view('/', 'boas_vindas')->name('home');
