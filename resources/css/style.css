@@ -41,18 +41,11 @@ main {
     color: #fff !important;
 }
 
-/* Footer */
-footer {
-    background-color: #212529;
-    color: #ddd;
-    padding: 25px 0;
-    text-align: center;
-}
-
 footer p {
     margin: 0;
     font-size: 14px;
 }
+
 
 /* Cards e seções */
 .section-title {
