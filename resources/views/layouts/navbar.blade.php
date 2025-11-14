@@ -12,10 +12,8 @@
       <ul class="navbar-nav me-auto">
         <x-nav-button-link href="{{ url('/produtos') }}" :active="Request()->routeIs('produtos.*')">Produtos</x-nav-button-link>
         <x-nav-button-link href="{{ url('/compras') }}" :active="Request()->routeIs('compras.*')">Compras</x-nav-button-link>
-        @if (Auth::user()->isAdmin())
-          <x-nav-button-link href="{{ url('/clientes') }}" :active="Request()->routeIs('clientes.*')">Clientes</x-nav-button-link>
-          <x-nav-button-link href="{{ url('/categorias') }}" :active="Request()->routeIs('categorias.*')">Categorias</x-nav-button-link>
-        @endif
+        <x-nav-button-link href="{{ url('/clientes') }}" :active="Request()->routeIs('clientes.*')">Clientes</x-nav-button-link>
+        <x-nav-button-link href="{{ url('/categorias') }}" :active="Request()->routeIs('categorias.*')">Categorias</x-nav-button-link>
       </ul>
     </div>
 

@@ -13,6 +13,13 @@
                 <x-show.field label="Categoria" :value="$produto->categoria->nome" />
                 <x-show.field label="Material" :value="$produto->material" />
                 <x-show.field label="Marca" :value="$produto->marca" />
+                @if ($produto->imagem)
+                    <img src="{{ asset('storage/' . $produto->imagem) }}" 
+                        alt="Imagem do produto" 
+                        width="200" class="rounded shadow-sm">
+                @else
+                    <p class="text-muted">Sem imagem</p>
+                @endif
             </div>
 
             <div class="col-md-6">

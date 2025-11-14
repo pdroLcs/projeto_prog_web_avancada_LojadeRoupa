@@ -6,22 +6,44 @@
         </a>
     @endisset
 
-    {{-- Botão Editar --}}
-    @isset($editRoute)
-        <a href="{{ route($editRoute, $id) }}" class="btn btn-sm btn-outline-success">
-            <i class="bi bi-pencil"></i> Editar
-        </a>
-    @endisset
+    @if ($onlyAdmin == "true")
+        @if (Auth::user()->isAdmin())
+            {{-- Botão Editar --}}
+            @isset($editRoute)
+                <a href="{{ route($editRoute, $id) }}" class="btn btn-sm btn-outline-success">
+                    <i class="bi bi-pencil"></i> Editar
+                </a>
+            @endisset
 
-    {{-- Botão Excluir --}}
-    @isset($deleteRoute)
-        <form action="{{ route($deleteRoute, $id) }}" method="POST" class="d-inline">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-sm btn-outline-danger"
-                onclick="return confirm('Tem certeza que deseja excluir este item?')">
-                <i class="bi bi-trash"></i> Excluir
-            </button>
-        </form>
-    @endisset
+            {{-- Botão Excluir --}}
+            @isset($deleteRoute)
+                <form action="{{ route($deleteRoute, $id) }}" method="POST" class="d-inline">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-sm btn-outline-danger"
+                        onclick="return confirm('Tem certeza que deseja excluir este item?')">
+                        <i class="bi bi-trash"></i> Excluir
+                    </button>
+                </form>
+            @endisset
+        @endif
+    @else
+        @isset($editRoute)
+            <a href="{{ route($editRoute, $id) }}" class="btn btn-sm btn-outline-success">
+                <i class="bi bi-pencil"></i> Editar
+            </a>
+        @endisset
+
+        {{-- Botão Excluir --}}
+        @isset($deleteRoute)
+            <form action="{{ route($deleteRoute, $id) }}" method="POST" class="d-inline">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-sm btn-outline-danger"
+                    onclick="return confirm('Tem certeza que deseja excluir este item?')">
+                    <i class="bi bi-trash"></i> Excluir
+                </button>
+            </form>
+        @endisset            
+    @endif
 </div>
