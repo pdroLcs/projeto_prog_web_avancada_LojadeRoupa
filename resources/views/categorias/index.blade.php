@@ -32,7 +32,7 @@
                                 <td>{{ $categoria->id }}</td>
                                 <td>{{ $categoria->nome }}</td>
                                 <td class="text-center">
-                                    <x-action-buttons :id="$categoria->id" showRoute="categorias.show" editRoute="categorias.edit" deleteRoute="categorias.destroy"/>
+                                    <x-action-buttons :id="$categoria->id" onlyAdmin="true" showRoute="categorias.show" editRoute="categorias.edit" deleteRoute="categorias.destroy"/>
                                 </td>
                             </tr>
                         @empty
