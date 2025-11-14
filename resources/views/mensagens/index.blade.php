@@ -1,79 +1,87 @@
 @extends('layouts.app')
 
-{{-- Define o cabeçalho --}}
+@section('title', 'Mensagens dos Clientes')
+
 @section('header')
     <h2 class="h4 mb-0">
-        {{ __('Visualização de Mensagens dos Clientes') }}
+        {{ __('Mensagens dos Clientes') }}
     </h2>
 @endsection
 
-{{-- Conteúdo principal da página --}}
 @section('content')
-    <div class="row">
-        <div class="col-12">
-            
-            <div class="card shadow-lg">
-                <div class="card-header bg-warning text-dark">
-                    {{-- CORREÇÃO: Usa isset() para garantir que count() só seja chamado se $mensagens existir --}}
-                    <h5 class="mb-0">Caixa de Entrada ({{ isset($mensagens) ? count($mensagens) : 0 }} Mensagens)</h5>
-                </div>
-                <div class="card-body p-0">
-                    
-                    {{-- 
-                        Requisito: Listar mensagens da mais recente para a mais antiga.
-                        O Controller é quem deve garantir a ordenação decrescente de data.
-                    --}}
-                    @forelse ($mensagens as $mensagem)
-                        <div class="list-group-item list-group-item-action @if(!$mensagem->lida) list-group-item-light @endif p-4">
-                            <div class="d-flex w-100 justify-content-between align-items-center">
-                                
-                                {{-- Status/Nome do Cliente --}}
-                                <div>
-                                    <span class="badge rounded-pill me-2 @if(!$mensagem->lida) bg-success @else bg-secondary @endif">
-                                        {{ $mensagem->lida ? 'Lida' : 'Nova' }}
-                                    </span>
-                                    <h5 class="mb-1 d-inline-block">{{ $mensagem->nome }}</h5>
-                                </div>
-                                
-                                {{-- Data e Ação --}}
-                                <small class="text-muted">
-                                    {{-- Assumindo que o Model tem um campo 'created_at' --}}
-                                    <i class="bi bi-clock me-1"></i> {{ $mensagem->created_at->diffForHumans() }}
-                                    
-                                    <button class="btn btn-sm btn-outline-danger ms-3" title="Excluir Mensagem">
+<div class="row">
+    <div class="col-12">
+
+        <div class="card shadow-lg border-0">
+            <div class="card-header bg-warning text-dark fw-bold">
+                Caixa de Entrada ({{ $mensagens->count() }} Mensagens)
+            </div>
+
+            <div class="card-body p-0">
+
+                @forelse ($mensagens as $mensagem)
+                    <div class="list-group-item list-group-item-action p-4">
+
+                        {{-- Cabeçalho --}}
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            {{-- Nome do Cliente --}}
+                            <h5 class="mb-0 fw-bold">
+                                {{ $mensagem->cliente->nome }}
+                            </h5>
+
+                            {{-- Data + Botão Excluir --}}
+                            <div class="d-flex align-items-center">
+
+                                <small class="text-muted me-3">
+                                    <i class="bi bi-clock me-1"></i>
+                                    {{ $mensagem->created_at->diffForHumans() }}
+                                </small>
+
+                                <form action="{{ route('fale-conosco.destroy', $mensagem->id) }}"
+                                      method="POST"
+                                      onsubmit="return confirm('Deseja excluir esta mensagem?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-sm btn-outline-danger" title="Excluir">
                                         <i class="bi bi-trash"></i>
                                     </button>
-                                </small>
+                                </form>
                             </div>
+                        </div>
 
-                            <p class="mb-1 mt-2 text-muted">
-                                <i class="bi bi-envelope me-1"></i> **Email:** {{ $mensagem->email }} | 
-                                <i class="bi bi-phone me-1"></i> **Telefone:** {{ $mensagem->telefone }}
-                            </p>
-                            
-                            {{-- Motivo do Contato (Requisito do Formulário) --}}
-                            <p class="mt-2 mb-0">
-                                **Motivo:** <span class="fw-bold">{{ $mensagem->motivo ?? 'N/A' }}</span>
-                            </p>
-                            
-                            <hr class="my-2">
-                            
-                            <p class="mb-0 text-break">{{ $mensagem->mensagem }}</p>
-                        </div>
-                    @empty
-                        <div class="p-5 text-center">
-                            <i class="bi bi-inbox-fill display-4 text-muted"></i>
-                            <p class="lead mt-3 text-muted">Nenhuma mensagem de cliente recebida ainda.</p>
-                        </div>
-                    @endforelse
-                </div>
-                
-                {{-- Exemplo de Paginação --}}
-                {{-- <div class="card-footer">
-                    {{ $mensagens->links() }}
-                </div> --}}
+                        {{-- Dados do cliente --}}
+                        <p class="text-muted mt-2 mb-1">
+                            <i class="bi bi-envelope me-1"></i> {{ $mensagem->cliente->user->email }}
+                            <span class="mx-2">|</span>
+                            <i class="bi bi-phone me-1"></i> {{ $mensagem->cliente->telefone }}
+                        </p>
+
+                        <hr>
+
+                        {{-- Assunto --}}
+                        <p class="fw-bold mb-1">
+                            Assunto: {{ $mensagem->assunto }}
+                        </p>
+
+                        {{-- Corpo da Mensagem --}}
+                        <p class="text-break mb-0">
+                            {{ $mensagem->mensagem }}
+                        </p>
+
+                    </div>
+
+                @empty
+                    <div class="py-5 text-center">
+                        <i class="bi bi-inbox display-4 text-muted"></i>
+                        <p class="lead mt-3 text-muted">Nenhuma mensagem recebida.</p>
+                    </div>
+                @endforelse
+
             </div>
-            
+
         </div>
+
     </div>
+</div>
 @endsection
