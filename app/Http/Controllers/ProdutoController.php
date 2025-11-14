@@ -29,10 +29,10 @@ class ProdutoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(produtoRequest $request)
+    public function store(ProdutoRequest $request)
     {
         Produto::create($request->validated());
-        return redirect()->route('produtos.index')->with('success', 'produto cadastrada com sucesso!');
+        return redirect()->route('produtos.index')->with('success', 'Produto cadastrado com sucesso!');
     }
 
     /**
@@ -57,11 +57,11 @@ class ProdutoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(produtoRequest $request, string $id)
+    public function update(ProdutoRequest $request, string $id)
     {
         $produto = Produto::with('categoria')->findOrFail($id);
         $produto->update($request->validated());
-        return redirect()->route('produtos.index')->with('success', 'produto atualizada com sucesso!');
+        return redirect()->route('produtos.index')->with('success', 'Produto atualizado com sucesso!');
     }
 
     /**
@@ -70,6 +70,6 @@ class ProdutoController extends Controller
     public function destroy(string $id)
     {
         Produto::destroy($id);
-        return redirect()->route('produtos.index')->with('success', 'produto excluída com sucesso');
+        return redirect()->route('produtos.index')->with('success', 'Produto excluído com sucesso');
     }
 }

@@ -1,0 +1,165 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #dddddd;
+}
+
+main {
+    flex: 1;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #212529;
+    position: relative !important;
+    z-index: 9999 !important;
+}
+
+.navbar .navbar-nav .nav-link {
+    color: #ffffff !important;     /* força texto branco */
+    opacity: 1 !important;
+    pointer-events: auto !important; /* garante que o clique funcione */
+    display: inline-block !important;
+    visibility: visible !important;
+}
+
+.navbar-brand {
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.nav-link {
+    color: #ddd !important;
+    font-weight: 500;
+}
+
+.nav-link.active,
+.nav-link:hover {
+    color: #fff !important;
+}
+
+/* Footer */
+footer {
+    background-color: #212529;
+    color: #ddd;
+    padding: 25px 0;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Cards e seções */
+.section-title {
+    font-weight: 600;
+    text-align: center;
+    margin: 40px 0 20px;
+    color: #333;
+}
+
+.product-card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background: #fff;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+    height: 250px;
+    object-fit: cover;
+}
+
+.btn-shop {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+}
+
+.btn-shop:hover {
+    background-color: #333;
+}
+
+/* Dropdown perfil */
+.nav-item.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: #343a40; /* fundo escuro igual à navbar */
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 99999;
+    min-width: 180px;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-item {
+    color: #fff !important;
+    padding: 10px 15px;
+    font-weight: 500;
+}
+
+.dropdown-item:hover {
+    background-color: #495057;
+}
+
+/* ===== Correção para dropdown sendo recortado/oculto em desktop ===== */
+
+/* Garante que o container da navbar não recorte o dropdown */
+.navbar, 
+.navbar .navbar-collapse, 
+.navbar .collapse {
+  overflow: visible !important;
+  z-index: 1030; /* manter acima do conteúdo */
+}
+
+/* Posicionamento do item dropdown para que o menu absoluto funcione corretamente */
+.nav-item.dropdown {
+  position: relative; /* já estava, mas garantimos */
+}
+
+/* Ajustes finais do dropdown */
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 6px); /* pequeno espaçamento abaixo do link */
+  right: 0;
+  left: auto;
+  min-width: 180px;
+  display: none;
+  z-index: 2000;
+}
+
+/* Mostrar quando o Bootstrap aplicar .show */
+.dropdown-menu.show {
+  display: block;
+}
+
+/* Estética */
+.dropdown-item {
+  color: #fff !important;
+}
+.dropdown-item:hover {
+  background-color: #495057;
+}
+
