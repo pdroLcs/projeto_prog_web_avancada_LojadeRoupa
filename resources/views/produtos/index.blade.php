@@ -28,8 +28,8 @@
                     <div class="card h-100 shadow-sm border-0 rounded-3">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title text-dark fw-bold mb-2">{{ $produto->nome }}</h5>
-                            @if ($produto->img)
-                                <img src="{{ asset('storage/' . $produto->img) }}" 
+                            @if ($produto->imagem)
+                                <img src="{{ asset('storage/' . $produto->imagem) }}" 
                                     class="card-img-top" 
                                     alt="{{ $produto->nome }}"
                                     style="height: 200px; object-fit: cover;">
