@@ -46,7 +46,8 @@
                             
                             <div class="mt-auto text-center">
                                 <x-action-buttons 
-                                    :id="$produto->id" 
+                                    :id="$produto->id"
+                                    onlyAdmin="true"
                                     showRoute="produtos.show" 
                                     editRoute="produtos.edit" 
                                     deleteRoute="produtos.destroy"/>
