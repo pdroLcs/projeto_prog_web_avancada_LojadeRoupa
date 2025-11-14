@@ -6,7 +6,7 @@
         </a>
     @endisset
 
-    @if (!Auth::user()->isAdmin())
+    @if (Auth::check() && !Auth::user()->isAdmin())
         {{-- Botão Comprar --}}
         @isset($buyRoute)
             <a href="{{ route($buyRoute, $id) }}" class="btn btn-sm btn-outline-warning">
@@ -16,7 +16,7 @@
     @endif
 
     @if ($onlyAdmin == "true")
-        @if (Auth::user()->isAdmin())
+        @if (Auth::check() && Auth::user()->isAdmin())
             {{-- Botão Editar --}}
             @isset($editRoute)
                 <a href="{{ route($editRoute, $id) }}" class="btn btn-sm btn-outline-success">

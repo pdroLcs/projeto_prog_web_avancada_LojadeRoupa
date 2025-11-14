@@ -10,7 +10,7 @@
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h3 class="mb-0 text-dark">Produtos Cadastrados</h3>
-        @if (Auth::user()->isAdmin())
+        @if (Auth::check() && Auth::user()->isAdmin())
             <a href="{{ route('produtos.create') }}" class="btn btn-dark">
                 <i class="bi bi-plus-lg"></i> Cadastrar Produto
             </a>
