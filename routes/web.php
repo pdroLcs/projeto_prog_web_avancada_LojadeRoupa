@@ -29,3 +29,4 @@ Route::middleware(['auth', 'admin'])->group(function() {
 });
 Route::resource('compras', CompraController::class);
 Route::resource('clientes', ClienteController::class);
+Route::view('/', 'boas_vindas')->name('home');
