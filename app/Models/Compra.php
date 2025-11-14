@@ -11,7 +11,7 @@ class Compra extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['valor_total', 'status'];
+    protected $fillable = ['valor_total', 'status', 'cliente_id'];
 
     public function cliente(): BelongsTo
     {
