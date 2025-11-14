@@ -34,7 +34,9 @@ Route::middleware(['auth', 'admin'])->group(function() {
     Route::resource('categorias', CategoriaController::class);
     Route::resource('produtos', ProdutoController::class)->except('index', 'show');
     Route::resource('clientes', ClienteController::class)->only('index', 'show');
-    Route::resource('mensagens', MensagemController::class);
+    Route::resource('fale-conosco', MensagemController::class)->only('index');
 });
 Route::resource('produtos', ProdutoController::class)->only('index', 'show');
+Route::resource('fale-conosco', MensagemController::class)->only('create', 'store');
+
 Route::view('/', 'boas_vindas')->name('home');

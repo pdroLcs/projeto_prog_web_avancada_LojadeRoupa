@@ -22,9 +22,8 @@ class MensagemRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'assunto' => 'string|max:100',
+            'assunto' => 'nullable|string|max:100',
             'mensagem' => 'required|string|max:1000',
-            'cliente_id' => 'required|exists:cliente,id'
         ];
     }
 

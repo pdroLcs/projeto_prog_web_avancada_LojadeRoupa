@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MensagemRequest;
 use App\Models\Cliente;
 use App\Models\Mensagem;
+use Illuminate\Support\Facades\Auth;
 
 class MensagemController extends Controller
 {
@@ -22,8 +23,7 @@ class MensagemController extends Controller
      */
     public function create()
     {
-        $clientes = Cliente::all();
-        return view('mensagens.create', compact('clientes'));
+        return view('mensagens.create');
     }
 
     /**
@@ -31,8 +31,13 @@ class MensagemController extends Controller
      */
     public function store(MensagemRequest $request)
     {
-        Mensagem::create($request->validated());
-        return redirect()->route('mensagens.index')->with('success', 'Mensagem enviada com sucesso!');
+        $validated = $request->validated();
+        Mensagem::create([
+            'assunto' => $validated['assunto'],
+            'mensagem' => $validated['mensagem'],
+            'cliente_id' => Auth::user()->cliente->id
+        ]);
+        return redirect()->route('produtos.index')->with('success', 'Mensagem enviada com sucesso!');
     }
 
     /**
