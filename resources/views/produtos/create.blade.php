@@ -15,6 +15,7 @@
                     <x-form.input label="Material" name="material" placeholder="Tecido, Couro"/>
                     <x-form.input label="Marca" name="marca"/>
                     <x-form.select label="Categoria" name="categoria_id" :options="$categorias->pluck('nome', 'id')" required/>
+                    <x-form.input label="Imagem" name="img" type="file" accept="image/*"/>
 
                     <x-form.actions :back="route('produtos.index')"/>
                 </form>
