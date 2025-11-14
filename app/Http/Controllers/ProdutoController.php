@@ -31,8 +31,17 @@ class ProdutoController extends Controller
      */
     public function store(ProdutoRequest $request)
     {
-        Produto::create($request->validated());
-        return redirect()->route('produtos.index')->with('success', 'Produto cadastrado com sucesso!');
+        $data = $request->validated();
+
+    // Upload da imagem (se enviada)
+    if ($request->hasFile('imagem')) {
+        $data['imagem'] = $request->file('imagem')->store('imagens', 'public');
+    }
+
+    // Cria o produto com todos os dados
+    Produto::create($data);
+
+    return redirect()->route('produtos.index')->with('success', 'Produto cadastrado com sucesso!');
     }
 
     /**
