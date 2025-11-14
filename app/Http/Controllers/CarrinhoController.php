@@ -14,15 +14,15 @@ class CarrinhoController extends Controller
     public function comprarAgora(Produto $produto)
     {
         // 1. Verificação de Regra de Negócio (Opcional, mas seguro)
-        if (Auth::user()->role !== 'user') {
+        if (Auth::user()->isAdmin()) {
             return redirect()->route('produtos.index')->with('error', 'Apenas clientes podem fazer compras.');
         }
 
         // 2. Criar registro da Compra (no BD)
         $compra = Compra::create([
-            'user_id' => Auth::id(), // <-- CORRIGIDO: Usa o ID do usuário logado
+            'cliente_id' => Auth::user()->cliente->id, // <-- CORRIGIDO: Usa o ID do usuário logado
             'valor_total' => $produto->preco, 
-            'data_compra' => now(), 
+            // 'data_compra' => now(),
             'status' => 'Processando', 
         ]);
 

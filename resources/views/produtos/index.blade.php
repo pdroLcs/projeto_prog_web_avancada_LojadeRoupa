@@ -59,7 +59,7 @@
                             
                             <div class="mt-auto text-center">
                                 @auth
-                                    @if (Auth::user()->role === 'user')
+                                    @if (Auth::user()->role === 'cliente')
                                         {{-- AÇÕES DO CLIENTE (Ver Detalhes e Comprar) --}}
                                         <div class="d-flex justify-content-between gap-2">
                                             <a href="{{ route('produtos.show', $produto->id) }}" class="btn btn-outline-secondary w-50">

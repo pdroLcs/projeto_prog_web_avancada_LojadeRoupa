@@ -38,7 +38,7 @@
                                     <td>{{ $compra->id }}</td>
                                     <td>{{ $compra->created_at->format('d/m/Y H:i') }}</td>
                                     {{-- Use o relacionamento 'cliente' do Model Compra --}}
-                                    <td>{{ $compra->cliente->name ?? 'Cliente Desconhecido' }}</td> 
+                                    <td>{{ $compra->cliente->user->name ?? 'Cliente Desconhecido' }}</td> 
                                     <td>R$ {{ number_format($compra->valor_total, 2, ',', '.') }}</td>
                                     <td class="text-center">
                                         {{-- Para Compras, geralmente há um botão 'Ver Detalhes' --}}

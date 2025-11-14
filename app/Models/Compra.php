@@ -14,9 +14,8 @@ class Compra extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', // JÁ CORRIGIDO
+        'cliente_id', // JÁ CORRIGIDO
         'valor_total',
-        'data_compra',
         'status',
     ];
 
@@ -29,10 +28,10 @@ class Compra extends Model
     public function cliente(): BelongsTo // Mantemos o nome 'cliente' para não quebrar a View
     {
         // O relacionamento deve ser com o Model User, usando a chave 'user_id'
-        return $this->belongsTo(User::class, 'user_id'); 
+        return $this->belongsTo(Cliente::class); 
     }
 
-    public function itens(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function itens(): HasMany
     {
         return $this->hasMany(ItensCompra::class);
     }

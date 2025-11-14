@@ -13,9 +13,9 @@ class ItensCompra extends Model
 
     protected $fillable = ['compra_id','produto_id', 'quantidade', 'preco_unitario'];
 
-    public function compra(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function compra(): BelongsTo
     {
-        return $this->belongsTo(Compra::class, 'compra_id');
+        return $this->belongsTo(Compra::class);
     }
 
     public function produto(): BelongsTo
