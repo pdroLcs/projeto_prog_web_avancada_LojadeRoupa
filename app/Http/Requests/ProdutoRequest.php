@@ -24,9 +24,10 @@ class ProdutoRequest extends FormRequest
         return [
             'nome' => 'required|string|max:100',
             'preco' => 'required|numeric',
-            'descricao' => 'string|max:200',
-            'material' => 'string|max:100',
-            'marca' => 'string|max:100',
+            'descricao' => 'nullable|string|max:200',
+            'material' => 'nullable|string|max:100',
+            'marca' => 'nullable|string|max:100',
+            'img' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
             'categoria_id' => 'required|exists:categorias,id'
         ];
     }
