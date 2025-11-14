@@ -6,6 +6,15 @@
         </a>
     @endisset
 
+    @if (!Auth::user()->isAdmin())
+        {{-- Botão Comprar --}}
+        @isset($buyRoute)
+            <a href="{{ route($buyRoute, $id) }}" class="btn btn-sm btn-outline-warning">
+                <i class="bi bi-cart"></i> Comprar
+            </a>
+        @endisset
+    @endif
+
     @if ($onlyAdmin == "true")
         @if (Auth::user()->isAdmin())
             {{-- Botão Editar --}}

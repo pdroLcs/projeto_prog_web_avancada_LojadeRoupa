@@ -48,6 +48,7 @@
                                 <x-action-buttons 
                                     :id="$produto->id"
                                     onlyAdmin="true"
+                                    buyRoute="compras.create"
                                     showRoute="produtos.show" 
                                     editRoute="produtos.edit" 
                                     deleteRoute="produtos.destroy"/>
