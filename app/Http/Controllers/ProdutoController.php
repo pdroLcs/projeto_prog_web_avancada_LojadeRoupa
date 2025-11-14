@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProdutoRequest;
 use App\Models\Categoria;
 use App\Models\Produto;
-
+use Illuminate\Support\Facades\Storage;
 class ProdutoController extends Controller
 {
     /**
@@ -31,17 +31,20 @@ class ProdutoController extends Controller
      */
     public function store(ProdutoRequest $request)
     {
+        // 1. Valida todos os dados do formulário
         $data = $request->validated();
 
-    // Upload da imagem (se enviada)
-    if ($request->hasFile('imagem')) {
-        $data['imagem'] = $request->file('imagem')->store('imagens', 'public');
-    }
+        // 2. Upload da imagem (CORRIGIDO: usa a classe Storage importada)
+        if ($request->hasFile('imagem')) {
+            // Salva a imagem na pasta 'storage/app/public/produtos'
+            $data['imagem'] = $request->file('imagem')->store('produtos', 'public');
+        }
 
-    // Cria o produto com todos os dados
-    Produto::create($data);
+        // 3. Cria o produto com todos os dados validados
+        Produto::create($data);
 
-    return redirect()->route('produtos.index')->with('success', 'Produto cadastrado com sucesso!');
+        // 4. Redireciona com mensagem de sucesso
+        return redirect()->route('produtos.index')->with('success', 'Produto cadastrado com sucesso!');
     }
 
     /**

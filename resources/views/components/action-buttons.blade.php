@@ -1,3 +1,11 @@
+@props([
+    'id',
+    'showRoute' => null,
+    'editRoute' => null,
+    'deleteRoute' => null,
+    'onlyAdmin' => false,
+])
+
 <div class="d-inline-flex gap-1">
     {{-- Botão Ver --}}
     @isset($showRoute)

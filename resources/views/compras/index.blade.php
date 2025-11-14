@@ -1,52 +1,64 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Gerenciar Compras') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    
-                    <div class="flex justify-between items-center mb-6">
+@section('title', 'Minhas Compras')
 
-                        {{-- Tabela de Compras Realizada --}}
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">Lista de Compras Realizadas</h3>
+@section('content')
+<div class="container my-5">
+    <h2 class="text-center mb-4 text-primary">Histórico de Compras</h2>
 
-                    </div>
-                    
-                    @if ($compras->isEmpty())
-                        <p>Nenhuma compra registrada até o momento.</p>
-                    @else
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead>
+    <x-alert/> 
+    {{-- Assumindo que o componente x-alert/x-action-buttons existe --}}
+
+    <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="mb-0 text-dark">Pedidos Realizados</h3>
+                {{-- Não adicionamos botão de "Adicionar Novo" aqui, pois a compra é feita no catálogo. --}}
+            </div>
+
+            @if ($compras->isEmpty())
+                <div class="alert alert-info text-center" role="alert">
+                    Você ainda não possui pedidos registrados.
+                </div>
+            @else
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Pedido #</th>
+                                <th>Data</th>
+                                <th>Cliente</th>
+                                <th>Valor Total</th>
+                                <th class="text-center">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($compras as $compra)
                                 <tr>
-                                    <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID Compra</th>
-                                    <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cliente</th>
-                                    <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data</th>
-                                    <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Valor Total</th>
-                                    <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                @foreach ($compras as $compra)
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">{{ $compra->id }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">{{ $compra->cliente->nome ?? 'Cliente Removido' }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">{{ $compra->created_at->format('d/m/Y') }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">R$ {{ number_format($compra->valor_total, 2, ',', '.') }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <a href="{{ route('compras.show', $compra->id) }}" class="text-indigo-600 hover:text-indigo-900 mr-3">Ver Detalhes</a>
+                                    <td>{{ $compra->id }}</td>
+                                    <td>{{ $compra->created_at->format('d/m/Y H:i') }}</td>
+                                    {{-- Use o relacionamento 'cliente' do Model Compra --}}
+                                    <td>{{ $compra->cliente->name ?? 'Cliente Desconhecido' }}</td> 
+                                    <td>R$ {{ number_format($compra->valor_total, 2, ',', '.') }}</td>
+                                    <td class="text-center">
+                                        {{-- Para Compras, geralmente há um botão 'Ver Detalhes' --}}
+                                        <a href="{{ route('compras.show', $compra->id) }}" class="btn btn-sm btn-outline-info">
+                                            <i class="bi bi-eye"></i> Detalhes
+                                        </a>
                                     </td>
                                 </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    @endif
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="text-center text-muted">
+                                        Nenhuma compra registrada até o momento.
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
-            </div>
+            @endif
         </div>
     </div>
-</x-app-layout>
+</div>
+@endsection
