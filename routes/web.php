@@ -19,14 +19,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::resource('compras', CompraController::class);
 });
 
 require __DIR__.'/auth.php';
 
 Route::middleware(['auth', 'admin'])->group(function() {
     Route::resource('categorias', CategoriaController::class);
-    Route::resource('produtos', ProdutoController::class);
+    Route::resource('produtos', ProdutoController::class)->except('index', 'show');
 });
-Route::resource('compras', CompraController::class);
+Route::resource('produtos', ProdutoController::class)->only('index', 'show');
 Route::resource('clientes', ClienteController::class);
 Route::view('/', 'boas_vindas')->name('home');
