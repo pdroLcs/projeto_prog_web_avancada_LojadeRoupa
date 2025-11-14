@@ -61,7 +61,7 @@ class ProdutoController extends Controller
     {
         $produto = Produto::with('categoria')->findOrFail($id);
         $produto->update($request->validated());
-        return redirect()->route('produtos.index')->with('success', 'produto atualizada com sucesso!');
+        return redirect()->route('produtos.index')->with('success', 'Produto atualizado com sucesso!');
     }
 
     /**
@@ -70,6 +70,6 @@ class ProdutoController extends Controller
     public function destroy(string $id)
     {
         Produto::destroy($id);
-        return redirect()->route('produtos.index')->with('success', 'produto excluída com sucesso');
+        return redirect()->route('produtos.index')->with('success', 'Produto excluído com sucesso');
     }
 }
