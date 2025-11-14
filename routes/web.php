@@ -25,7 +25,8 @@ require __DIR__.'/auth.php';
 
 Route::middleware(['auth', 'admin'])->group(function() {
     Route::resource('categorias', CategoriaController::class);
-    Route::resource('produtos', ProdutoController::class);
+    Route::resource('produtos', ProdutoController::class)->except('index', 'show');
 });
+Route::resource('produtos', ProdutoController::class)->only('index', 'show');
 Route::resource('compras', CompraController::class);
 Route::resource('clientes', ClienteController::class);
