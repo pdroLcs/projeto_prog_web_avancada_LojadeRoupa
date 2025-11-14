@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CompraController;
 use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\MensagemController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,6 +29,7 @@ Route::middleware(['auth', 'admin'])->group(function() {
     Route::resource('categorias', CategoriaController::class);
     Route::resource('produtos', ProdutoController::class)->except('index', 'show');
     Route::resource('clientes', ClienteController::class)->only('index', 'show');
+    Route::resource('mensagens', MensagemController::class);
 });
 Route::resource('produtos', ProdutoController::class)->only('index', 'show');
 Route::view('/', 'boas_vindas')->name('home');
