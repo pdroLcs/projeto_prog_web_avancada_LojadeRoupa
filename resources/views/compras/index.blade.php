@@ -43,6 +43,7 @@
                                     <td class="text-center">
                                         <x-action-buttons 
                                             :id="$compra->id"
+                                            onlyAdmin="true"
                                             showRoute="compras.show" 
                                             editRoute="compras.edit" 
                                             deleteRoute="compras.destroy"/>
