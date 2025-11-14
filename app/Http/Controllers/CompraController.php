@@ -72,6 +72,7 @@ class CompraController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Compra::destroy($id);
+        return redirect()->route('compras.index')->with('success', 'Compra removida com sucesso!');
     }
 }

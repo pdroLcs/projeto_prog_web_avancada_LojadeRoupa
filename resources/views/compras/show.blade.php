@@ -13,8 +13,8 @@
                 <div class="card-header bg-primary text-white fw-bold">Informações do Pedido</div>
                 <div class="card-body">
                     <p><strong>Status:</strong> <span class="badge bg-success">{{ $compra->status ?? 'Concluído' }}</span></p>
-                    <p><strong>Data da Compra:</strong> {{ $compra->data_compra->format('d/m/Y H:i') }}</p>
-                    <p><strong>Cliente:</strong> {{ $compra->cliente->name ?? 'N/A' }}</p>
+                    <p><strong>Data da Compra:</strong> {{ $compra->created_at->format('d/m/Y H:i') }}</p>
+                    <p><strong>Cliente:</strong> {{ $compra->cliente->user->name ?? 'N/A' }}</p>
                     <p><strong>Valor Total:</strong> <h4 class="text-success">R$ {{ number_format($compra->valor_total, 2, ',', '.') }}</h4></p>
                     
                     <a href="{{ route('compras.index') }}" class="btn btn-sm btn-outline-secondary mt-3">

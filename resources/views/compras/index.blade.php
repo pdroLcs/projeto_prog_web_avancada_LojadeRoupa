@@ -41,10 +41,15 @@
                                     <td>{{ $compra->cliente->user->name ?? 'Cliente Desconhecido' }}</td> 
                                     <td>R$ {{ number_format($compra->valor_total, 2, ',', '.') }}</td>
                                     <td class="text-center">
+                                        <x-action-buttons 
+                                            :id="$compra->id"
+                                            showRoute="compras.show" 
+                                            editRoute="compras.edit" 
+                                            deleteRoute="compras.destroy"/>
                                         {{-- Para Compras, geralmente há um botão 'Ver Detalhes' --}}
-                                        <a href="{{ route('compras.show', $compra->id) }}" class="btn btn-sm btn-outline-info">
+                                        {{-- <a href="{{ route('compras.show', $compra->id) }}" class="btn btn-sm btn-outline-info">
                                             <i class="bi bi-eye"></i> Detalhes
-                                        </a>
+                                        </a> --}}
                                     </td>
                                 </tr>
                             @empty
