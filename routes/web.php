@@ -34,7 +34,7 @@ require __DIR__.'/auth.php';
 Route::middleware(['auth', 'admin'])->group(function() {
     Route::resource('categorias', CategoriaController::class);
     Route::resource('produtos', ProdutoController::class)->except('index', 'show');
-    Route::resource('clientes', ClienteController::class)->only('index', 'show');
+    Route::resource('clientes', ClienteController::class)->only('index', 'show', 'destroy');
     Route::resource('fale-conosco', MensagemController::class)->only('index', 'destroy');
 });
 Route::resource('produtos', ProdutoController::class)->only('index', 'show');

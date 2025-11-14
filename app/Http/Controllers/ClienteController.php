@@ -24,4 +24,12 @@ class ClienteController extends Controller
         $cliente = Cliente::findOrFail($id);
         return view('clientes.show', compact('cliente'));
     }
+
+    public function destroy(string $id)
+    {
+        $cliente = Cliente::with('user')->findOrFail($id);
+        $cliente->user->delete();
+        $cliente->delete();
+        return redirect()->route('clientes.index')->with('success', 'Cliente excluído com sucesso!');
+    }
 }

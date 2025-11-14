@@ -31,7 +31,7 @@
                                 <td>{{ $cliente->user->email }}</td>
                                 <td>{{ $cliente->telefone }}</td>
                                 <td class="text-center">
-                                    <x-action-buttons :id="$cliente->id" onlyAdmin="true" showRoute="clientes.show" editRoute="profile.edit" deleteRoute="profile.destroy"/>
+                                    <x-action-buttons :id="$cliente->id" onlyAdmin="true" showRoute="clientes.show" editRoute="profile.edit" deleteRoute="clientes.destroy"/>
                                 </td>
                             </tr>
                         @empty
