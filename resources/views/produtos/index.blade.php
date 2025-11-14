@@ -72,11 +72,12 @@
                                         
                                     @elseif (Auth::user()->role === 'admin')
                                         {{-- AÇÕES DO ADMIN (Gerenciar/CRUD) --}}
-                                        <x-action-buttons 
-                                            :id="$produto->id"
-                                            showRoute="produtos.show" 
-                                            editRoute="produtos.edit" 
-                                            deleteRoute="produtos.destroy"/>
+                                        <div class="d-inline-flex gap-1">
+                                            <x-button route="produtos.show" :id="$produto->id" icon="bi bi-eye" text="Ver" color="primary" />
+                                            <x-button route="produtos.edit" :id="$produto->id" icon="bi bi-pencil" text="Editar" color="success" />
+                                            <x-button route="produtos.destroy" :id="$produto->id" method="DELETE" icon="bi bi-trash" text="Excluir" color="danger" />
+                                        </div>
+
                                     @endif
                                 @else 
                                     {{-- Usuário não logado --}}
