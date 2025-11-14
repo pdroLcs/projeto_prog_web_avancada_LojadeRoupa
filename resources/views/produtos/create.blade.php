@@ -7,7 +7,7 @@
         <h2 class="text-center mb-4">Cadastrar Novo Produto</h2>
         <div class="card shadow-sm border-0 rounded-3">
             <div class="card-body">
-                <form action="{{ route('produtos.store') }}" method="POST">
+                <form action="{{ route('produtos.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <x-form.input label="Nome do produto" name="nome" placeholder="Camisa Polo" required/>
                     <x-form.input label="Preço" name="preco" type="number" placeholder="99,99" step="0.01" required/>
