@@ -22,6 +22,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('compras', CompraController::class);
+    Route::resource('fale-conosco', MensagemController::class)->only('store');
 
     // Permite que qualquer usuário logado (incluindo clientes) realize a compra imediata.
     Route::get('comprar/{produto}', [CarrinhoController::class, 'comprarAgora'])
@@ -34,9 +35,9 @@ Route::middleware(['auth', 'admin'])->group(function() {
     Route::resource('categorias', CategoriaController::class);
     Route::resource('produtos', ProdutoController::class)->except('index', 'show');
     Route::resource('clientes', ClienteController::class)->only('index', 'show');
-    Route::resource('fale-conosco', MensagemController::class)->only('index');
+    Route::resource('fale-conosco', MensagemController::class)->only('index', 'destroy');
 });
 Route::resource('produtos', ProdutoController::class)->only('index', 'show');
-Route::resource('fale-conosco', MensagemController::class)->only('create', 'store');
+Route::resource('fale-conosco', MensagemController::class)->only('create');
 
 Route::view('/', 'boas_vindas')->name('home');
