@@ -30,3 +30,4 @@ Route::middleware(['auth', 'admin'])->group(function() {
 Route::resource('produtos', ProdutoController::class)->only('index', 'show');
 Route::resource('compras', CompraController::class);
 Route::resource('clientes', ClienteController::class);
+Route::view('/', 'boas_vindas')->name('home');
