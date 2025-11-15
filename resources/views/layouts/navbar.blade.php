@@ -12,6 +12,7 @@
       <ul class="navbar-nav me-auto">
         <x-nav-button-link href="{{ url('/produtos') }}" :active="Request()->routeIs('produtos.*')">Produtos</x-nav-button-link>
         <x-nav-button-link href="{{ url('/compras') }}" :active="Request()->routeIs('compras.*')">Compras</x-nav-button-link>
+        <x-nav-button-link href="{{ url('/sobre-nos') }}" :active="Request()->routeIs('sobre-nos.*')">Sobre nós</x-nav-button-link>
         <x-nav-button-link href="{{Auth::check() && Auth::user()->isAdmin() ? url('/fale-conosco') : url('/fale-conosco/create') }}" :active="Request()->routeIs('fale-conosco.*')">Fale Conosco</x-nav-button-link>
         @if (Auth::check() && Auth::user()->isAdmin())
           <x-nav-button-link href="{{ url('/clientes') }}" :active="Request()->routeIs('clientes.*')">Clientes</x-nav-button-link>

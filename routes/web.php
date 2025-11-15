@@ -40,4 +40,7 @@ Route::middleware(['auth', 'admin'])->group(function() {
 Route::resource('produtos', ProdutoController::class)->only('index', 'show');
 Route::resource('fale-conosco', MensagemController::class)->only('create');
 
+Route::get('sobre-nos', function(){
+    return view('sobre-nos.index');
+})->name('sobre-nos');
 Route::view('/', 'boas_vindas')->name('home');
