@@ -36,7 +36,8 @@ class ProdutoRequest extends FormRequest
     {
         return [
             'nome.required' => 'O nome é obrigatório',
-            'preco.required' => 'O preço é obrigatório'
+            'preco.required' => 'O preço é obrigatório',
+            'categoria_id.required' => 'Por favor, selecione uma categoria'
         ];
     }
 }
