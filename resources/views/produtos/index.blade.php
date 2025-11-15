@@ -58,31 +58,26 @@
                             
                             
                             <div class="mt-auto text-center">
-                                @auth
-                                    @if (Auth::user()->role === 'cliente')
-                                        {{-- AÇÕES DO CLIENTE (Ver Detalhes e Comprar) --}}
-                                        <div class="d-flex justify-content-between gap-2">
-                                            <a href="{{ route('produtos.show', $produto->id) }}" class="btn btn-outline-secondary w-50">
-                                                <i class="bi bi-eye"></i> Ver Detalhes
-                                            </a>
-                                            <a href="{{ route('compra.agora', $produto->id) }}" class="btn btn-success w-50">
-                                                <i class="bi bi-bag-fill"></i> Comprar
-                                            </a>
-                                        </div>
-                                        
-                                    @elseif (Auth::user()->role === 'admin')
-                                        {{-- AÇÕES DO ADMIN (Gerenciar/CRUD) --}}
-                                        <div class="d-inline-flex gap-1">
-                                            <x-button route="produtos.show" :id="$produto->id" icon="bi bi-eye" text="Ver" color="primary" />
-                                            <x-button route="produtos.edit" :id="$produto->id" icon="bi bi-pencil" text="Editar" color="success" />
-                                            <x-button route="produtos.destroy" :id="$produto->id" method="DELETE" icon="bi bi-trash" text="Excluir" color="danger" />
-                                        </div>
-
-                                    @endif
-                                @else 
-                                    {{-- Usuário não logado --}}
+                                @cliente
+                                    <div class="d-flex justify-content-between gap-2">
+                                        <a href="{{ route('produtos.show', $produto->id) }}" class="btn btn-outline-secondary w-50">
+                                            <i class="bi bi-eye"></i> Ver Detalhes
+                                        </a>
+                                        <a href="{{ route('compra.agora', $produto->id) }}" class="btn btn-success w-50">
+                                            <i class="bi bi-bag-fill"></i> Comprar
+                                        </a>
+                                    </div>
+                                @endcliente
+                                @admin
+                                    <div class="d-inline-flex gap-1">
+                                        <x-button route="produtos.show" :id="$produto->id" icon="bi bi-eye" text="Ver" color="primary" />
+                                        <x-button route="produtos.edit" :id="$produto->id" icon="bi bi-pencil" text="Editar" color="success" />
+                                        <x-button route="produtos.destroy" :id="$produto->id" method="DELETE" icon="bi bi-trash" text="Excluir" color="danger" />
+                                    </div>
+                                @endadmin
+                                @guest
                                     <a href="{{ route('login') }}" class="btn btn-outline-secondary w-100">Faça login para comprar</a>
-                                @endauth
+                                @endguest
                             </div>
                         </div>
                     </div>
