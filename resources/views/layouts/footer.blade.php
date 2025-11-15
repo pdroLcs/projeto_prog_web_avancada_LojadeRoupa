@@ -10,7 +10,7 @@
                         <ul class="list-unstyled d-inline-block mx-auto">
                             <li><i class="bi bi-geo-alt-fill me-2"></i> Endereço: Rua Exemplo, 123, Corumbá/MS</li>
                             <li><i class="bi bi-telephone-fill me-2"></i> Telefone: +55 (67) 99934-1014</li>
-                            <li><i class="bi bi-envelope-fill me-2"></i> E-mail: Loja-de-roupa@gmail.com</li>
+                            <li><i class="bi bi-envelope-fill me-2"></i> E-mail: panodefundo@gmail.com</li>
                         </ul>
 
                         <a href="https://wa.me/+5567999341014" target="_blank"
@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="text-center mt-3 border-top pt-2">
-            <small>© {{ date('Y') }} Organização Fictícia. Todos os direitos reservados.</small>
+            <small>© {{ date('Y') }} Pano de Fundo. Todos os direitos reservados.</small>
         </div>
     </div>
 </footer>

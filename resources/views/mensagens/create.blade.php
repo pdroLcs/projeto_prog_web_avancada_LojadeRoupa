@@ -4,6 +4,7 @@
 
 @section('content')
 <div class="container mt-4">
+    <x-alert/>
     <div class="card shadow-sm">
         <div class="card-header bg-primary text-white">
             <h4>Criar Mensagem</h4>

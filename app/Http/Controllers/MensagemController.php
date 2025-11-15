@@ -37,7 +37,7 @@ class MensagemController extends Controller
             'mensagem' => $validated['mensagem'],
             'cliente_id' => Auth::user()->cliente->id
         ]);
-        return redirect()->route('produtos.index')->with('success', 'Mensagem enviada com sucesso!');
+        return redirect()->route('fale-conosco.create')->with('success', 'Mensagem enviada com sucesso!');
     }
 
     /**

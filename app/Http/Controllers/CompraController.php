@@ -13,7 +13,18 @@ class CompraController extends Controller
      */
     public function index()
     {
-        $compras = Compra::all();
+            // Se o usuário for admin → mostra todas as compras
+        if (Auth::user()->isAdmin()) {
+            $compras = Compra::with('cliente.user')
+                            ->orderBy('created_at', 'desc')
+                            ->get();
+        } 
+        // Se for cliente → mostra apenas as compras dele
+        else {
+            $compras = Compra::where('cliente_id', Auth::user()->cliente->id)
+                            ->orderBy('created_at', 'desc')
+                            ->get();
+        }
         return view ('compras.index', compact('compras'));
     }
 
@@ -38,16 +49,17 @@ class CompraController extends Controller
      */
     public function show(string $id)
     {
-        // 1. Busca a compra específica pelo ID, carregando os relacionamentos essenciais.
-        $compra = Compra::with(['cliente', 'itens.produto'])
-                        ->findOrFail($id);
+        // // 1. Busca a compra específica pelo ID, carregando os relacionamentos essenciais.
+        // $compra = Compra::with(['cliente', 'itens.produto'])
+        //                 ->findOrFail($id);
         
-        // 2. Regra de Negócio: Garante que o cliente só veja suas próprias compras.
-        if (Auth::user()->role !== 'admin' && $compra->user_id !== Auth::id()) {
-            return redirect()->route('compras.index')->with('error', 'Acesso negado ao detalhe desta compra.');
-        }
+        // // 2. Regra de Negócio: Garante que o cliente só veja suas próprias compras.
+        // if (Auth::user()->role !== 'admin' && $compra->user_id !== Auth::id()) {
+        //     return redirect()->route('compras.index')->with('error', 'Acesso negado ao detalhe desta compra.');
+        // }
 
         // 3. Retorna a View de detalhes.
+        $compra = Compra::with(['cliente', 'itens.produto'])->findOrFail($id);
         return view('compras.show', compact('compra'));
     }
 
