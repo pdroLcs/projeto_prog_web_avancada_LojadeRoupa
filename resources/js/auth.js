@@ -1,9 +1,20 @@
 import { api } from "./api";
 
+export async function register(data) {
+    const response = await api.post('/register', data);
+
+    const { token, user } = response.data.data
+
+    localStorage.setItem('token', token)
+    localStorage.setItem('user', JSON.stringify(user))
+
+    api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+
+    return user
+}
+
 export async function login(email, password) {
     const response = await api.post('/login', {email, password});
-
-    console.log('Resposta login:', response.data);
 
     const { token, user } = response.data.data
 

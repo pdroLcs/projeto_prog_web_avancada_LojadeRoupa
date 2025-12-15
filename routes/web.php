@@ -44,4 +44,5 @@ Route::get('sobre-nos', function(){
     return view('sobre-nos.index');
 })->name('sobre-nos');
 Route::view('/', 'boas_vindas')->name('home');
+Route::view('/register', 'auth.register')->name('register');
 Route::view('/login', 'auth.login')->name('login');

@@ -8,7 +8,7 @@ export function initLogout() {
     logoutBtn.addEventListener('click', async () => {
         try {
             await logout()
-            window.location.href = '/login'
+            window.location.href = '/'
         } catch (error) {
             console.error(error)
             alert('Erro ao fazer logout')
