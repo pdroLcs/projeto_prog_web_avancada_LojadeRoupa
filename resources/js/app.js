@@ -14,3 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initLogout()
     
 })
+
+export function clearErrors() {
+    document.querySelectorAll('[id^="error-"]').forEach(el => {
+        el.innerHTML = ''
+    })
+}
