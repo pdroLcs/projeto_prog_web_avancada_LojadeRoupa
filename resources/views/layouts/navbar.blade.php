@@ -14,10 +14,8 @@
         <x-nav-button-link href="{{ url('/compras') }}" :active="Request()->routeIs('compras.*')">Compras</x-nav-button-link>
         <x-nav-button-link href="{{ url('/sobre-nos') }}" :active="Request()->routeIs('sobre-nos.*')">Sobre nós</x-nav-button-link>
         <x-nav-button-link href="{{Auth::check() && Auth::user()->isAdmin() ? url('/fale-conosco') : url('/fale-conosco/create') }}" :active="Request()->routeIs('fale-conosco.*')">Fale Conosco</x-nav-button-link>
-        @admin
-          <x-nav-button-link href="{{ url('/clientes') }}" :active="Request()->routeIs('clientes.*')">Clientes</x-nav-button-link>
-          <x-nav-button-link href="{{ url('/categorias') }}" :active="Request()->routeIs('categorias.*')">Categorias</x-nav-button-link>
-        @endadmin
+        <x-nav-button-link href="{{ url('/clientes') }}" class="admin-link d-none" :active="Request()->routeIs('clientes.*')">Clientes</x-nav-button-link>
+        <x-nav-button-link href="{{ url('/categorias') }}" class="admin-link d-none" :active="Request()->routeIs('categorias.*')">Categorias</x-nav-button-link>
       </ul>
     </div>
 
@@ -29,26 +27,26 @@
           <i class="bi bi-whatsapp me-1"></i> +55 67 99934-1014
         </a>
       </li>
-      @auth
-        <li class="nav-item dropdown">
-          <a id="navbarDropdown" class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button"
-             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="me-2">{{ Auth::user()->name }}</span>
-          </a>
+      {{-- ÁREA DO USUÁRIO (JS controla) --}}
+      <li id="user-menu" class="nav-item dropdown d-none">
+        <a id="user-name-btn" class="nav-link dropdown-toggle d-flex align-items-center"
+          href="#" role="button" data-bs-toggle="dropdown">
+        </a>
 
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{ route('profile.edit') }}">Editar Perfil</a>
+        <div class="dropdown-menu dropdown-menu-end">
+          <a class="dropdown-item" href="/perfil">Editar Perfil</a>
+          <button id="logout-btn" class="dropdown-item">Sair</button>
+        </div>
+      </li>
 
-            <form method="POST" action="{{ route('logout') }}">
-              @csrf
-              <button type="submit" class="dropdown-item">Sair</button>
-            </form>
-          </div>
-        </li>
-      @else
-        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Entrar</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Registrar</a></li>
-      @endauth
+      {{-- LINKS DE VISITANTE --}}
+      <li id="guest-menu" class="nav-item d-none">
+        <a class="nav-link" href="/login">Entrar</a>
+      </li>
+      <li id="guest-register" class="nav-item d-none">
+        <a class="nav-link" href="/register">Registrar</a>
+      </li>
+
     </ul>
 
   </div>
